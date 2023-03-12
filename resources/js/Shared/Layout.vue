@@ -1,15 +1,19 @@
 <template>
-    <section
-        class="relative flex h-screen min-h-full items-start justify-center overflow-x-hidden"
-    >
+    <section class="relative h-screen min-h-full items-start overflow-x-hidden">
         <!-- Sidenav -->
         <nav
             id="sidenav-3"
-            class="fixed top-0 left-0 z-[1035] h-screen w-60 -translate-x-full overflow-hidden bg-zinc-800 shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] data-[te-sidenav-hidden='false']:translate-x-0"
+            class="fixed top-0 left-0 z-[1035] h-screen w-60 -translate-x-full overflow-hidden bg-[#3B4252] shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] data-[te-sidenav-hidden='false']:translate-x-0"
             data-te-sidenav-init
             data-te-sidenav-hidden="false"
             data-te-sidenav-color="white"
         >
+            <a
+                href=""
+                class="text-xl text-white mt-6 font-bold uppercase flex justify-center"
+                >Inventory</a
+            >
+
             <ul
                 class="relative m-0 list-none px-[0.2rem]"
                 data-te-sidenav-menu-ref
@@ -162,7 +166,23 @@
                 </li>
             </ul>
         </nav>
+        <nav class="bg-white p-5 w-full h-15 shadow-sm">
+            <div class="flex justify-end container mt-1 mx-auto">
+                <ul class="flex text-lg gap-5">
+                    <li><a href="" class="text-">Home</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
 
         <slot />
+
+        <Modal />
     </section>
 </template>
+
+<script setup>
+import { Modal } from "momentum-modal";
+import Notification from "./Notification.vue";
+</script>

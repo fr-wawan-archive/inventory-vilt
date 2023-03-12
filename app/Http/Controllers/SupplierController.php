@@ -6,6 +6,8 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Request as RequestFacade;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class SupplierController extends Controller
 {
@@ -16,9 +18,18 @@ class SupplierController extends Controller
      */
     public function index(Request $request)
     {
-        $suppliers = Supplier::paginate(10)->all();
+        
+        $suppliers = Supplier::query()
+        ->when(RequestFacade::input('search'), function($query, $search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        })
+        ->select('id', 'name','phone','address')
+        ->paginate(10)->withQueryString();
+
+
         return Inertia::render('Suppliers/ListSupplier',[
-            "suppliers" => $suppliers
+            "suppliers" => $suppliers,
+            'filters' => RequestFacade::only(['search'])
         ]);
     }
 
@@ -29,6 +40,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
+       
     }
 
     /**
@@ -39,18 +51,16 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            "name" => "required | max:255",
-            "address" => "required | max:255",
-            "phone" => "required",
+        $validateData = $request->validate([
+            'name' => 'required | max:255',
+            'address' => 'required | max:255', 
+            'phone' => 'required'
         ]);
 
-        Supplier::create($validatedData);
+        Supplier::create($validateData);
 
-        return redirect("/suppliers/")->with(
-            "status",
-            "Supplier Successfully added"
-        );
+
+      return redirect()->route('suppliers.index');
     }
 
     /**
@@ -70,8 +80,11 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Supplier $supplier)
     {
+        return Inertia::modal('Suppliers/EditSupplier',[
+            "supplier" => $supplier
+        ])->baseRoute('suppliers.index');
     }
 
     /**
@@ -83,6 +96,7 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
+        // dd($request->all());
         $rules = [
             "name" => "required | max:255",
             "address" => "required | max:255",
@@ -93,10 +107,13 @@ class SupplierController extends Controller
 
         Supplier::where("id", $supplier->id)->update($validatedData);
 
-        return redirect("/suppliers/")->with(
-            "status",
-            "Supplier Successfully Updated"
-        );
+        // return redirect("/suppliers/")->with(
+        //     "status",
+        //     "Supplier Successfully Updated"
+        // );
+
+        return redirect("/suppliers/")->with('message','Supplier Successfully added');
+
     }
 
     /**

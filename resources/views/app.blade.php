@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+    @routes
     @inertiaHead
   </head>
-  <body class="font-tilt  text-black">
+  <body class="font-tilt bg-slate-200  text-black">
     @inertia
 
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
