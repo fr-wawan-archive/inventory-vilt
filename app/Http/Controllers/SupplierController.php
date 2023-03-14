@@ -40,6 +40,8 @@ class SupplierController extends Controller
      */
     public function create()
     {
+        return Inertia::modal('Suppliers/CreateSupplier',[
+        ])->baseRoute('suppliers.index');
        
     }
 
@@ -60,7 +62,7 @@ class SupplierController extends Controller
         Supplier::create($validateData);
 
 
-      return redirect()->route('suppliers.index');
+      return redirect()->route('suppliers.index')->with('message','Suppliers Successfully added');
     }
 
     /**
@@ -107,12 +109,7 @@ class SupplierController extends Controller
 
         Supplier::where("id", $supplier->id)->update($validatedData);
 
-        // return redirect("/suppliers/")->with(
-        //     "status",
-        //     "Supplier Successfully Updated"
-        // );
-
-        return redirect("/suppliers/")->with('message','Supplier Successfully added');
+        return redirect("/suppliers/")->with('message','Supplier Successfully Updated');
 
     }
 
@@ -129,7 +126,7 @@ class SupplierController extends Controller
         $supplier->delete();
 
         return redirect("/suppliers/")->with(
-            "status",
+            "message",
             "Supplier Successfully Deleted"
         );
     }

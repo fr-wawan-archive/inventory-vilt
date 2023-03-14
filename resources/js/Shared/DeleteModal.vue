@@ -9,7 +9,6 @@
     <TransitionRoot appear :show="isOpen" as="template">
         <Dialog as="div" @close="closeModal" class="relative z-10">
             <TransitionChild
-                @after-leave="redirect"
                 as="template"
                 enter="duration-300 ease-out"
                 enter-from="opacity-0"
@@ -78,7 +77,14 @@
                                             Cancel
                                         </button>
 
-                                        <slot />
+                                        <button
+                                            class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medicoum tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600"
+                                            @click="closeModal"
+                                        >
+                                            <Link :href="href" method="delete"
+                                                >Delete</Link
+                                            >
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -103,9 +109,9 @@ import { useModal } from "momentum-modal";
 
 defineProps({
     title: String,
+    href: String,
 });
 
-const { redirect } = useModal();
 const isOpen = ref(false);
 
 function openModal() {

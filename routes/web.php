@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,3 +23,4 @@ Route::get('/', function () {
 });
 
 Route::resource('suppliers',SupplierController::class);
+Route::resource('categories',CategoryController::class);

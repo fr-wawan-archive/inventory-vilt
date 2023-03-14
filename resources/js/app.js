@@ -5,6 +5,7 @@ import { modal } from "momentum-modal";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 
 createInertiaApp({
+    title: (title) => `${title} - Inventory`,
     resolve: (name) => {
         const pages = import.meta.glob("./Pages/**/*.vue", { eager: true });
         // return pages[`./Pages/${name}.vue`];

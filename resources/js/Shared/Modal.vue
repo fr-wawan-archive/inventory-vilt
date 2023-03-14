@@ -1,8 +1,7 @@
 <template>
-    <TransitionRoot appear :show="isOpen" as="template">
-        <Dialog as="div" @close="closeModal" class="relative z-10">
+    <TransitionRoot appear :show="show" as="template">
+        <Dialog as="div" @close="close" class="relative z-10">
             <TransitionChild
-                @after-leave="redirect"
                 as="template"
                 enter="duration-300 ease-out"
                 enter-from="opacity-0"
@@ -10,6 +9,7 @@
                 leave="duration-200 ease-in"
                 leave-from="opacity-100"
                 leave-to="opacity-0"
+                @after-leave="redirect"
             >
                 <div class="fixed inset-0 bg-black bg-opacity-25" />
             </TransitionChild>
@@ -62,14 +62,10 @@ defineProps({
     title: String,
 });
 
-const { redirect } = useModal();
-const isOpen = ref(true);
-
-function closeModal() {
-    isOpen.value = false;
-}
+const { show, close, redirect } = useModal();
 
 defineExpose({
-    closeModal,
+    close,
+    show,
 });
 </script>
