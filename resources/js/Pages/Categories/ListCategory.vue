@@ -1,11 +1,21 @@
 <template>
+    <Head>
+        <title>List Category</title>
+    </Head>
     <div v-if="$page.props.flash.message" class="m-auto">
         <Notification />
     </div>
 
     <div class="flex justify-center">
         <div class="bg-white w-9/12 shadow-lg ml-7 my-10">
-            <Search v-model="search" class="mt-5">List Categories</Search>
+            <Search title="List Category">
+                <input
+                    type="text"
+                    placeholder="Search.."
+                    class="p-2 border border-black"
+                    v-model="search"
+                />
+            </Search>
             <Table class="mt-3" :headers="['Name', 'Images']">
                 <tr v-for="category in categories.data" class="border-b">
                     <td class="whitespace px-6 py-4">
@@ -53,6 +63,7 @@
             <form
                 @submit.prevent="form.post('/categories')"
                 class="w-11/12 mx-auto"
+                enctype="multipart/form-data"
             >
                 <div class="border-b mb-5">
                     <h1 class="text-lg font-bold my-2">Create Suppliers</h1>
@@ -64,6 +75,9 @@
                 >
                     Supplier Name
                 </Input>
+                <div class="text-red-500" v-if="$page.props.errors.name">
+                    {{ $page.props.errors.name }}
+                </div>
                 <div class="my-1">
                     <label for="image">Category Images</label>
                     <input
@@ -73,6 +87,9 @@
                         class="p-2 w-full placeholder:text-gray-500 mt-2 bg-white border border-slate-400"
                         @input="form.image = $event.target.files[0]"
                     />
+                </div>
+                <div class="text-red-500" v-if="$page.props.errors.image">
+                    {{ $page.props.errors.image }}
                 </div>
 
                 <div class="mt-5">

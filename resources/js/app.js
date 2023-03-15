@@ -1,5 +1,5 @@
 import { createApp, h } from "vue";
-import { createInertiaApp, Link } from "@inertiajs/vue3";
+import { createInertiaApp, Link, Head } from "@inertiajs/vue3";
 import Layout from "./Shared/Layout.vue";
 import { modal } from "momentum-modal";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
@@ -17,6 +17,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .component("Link", Link)
+            .component("Head", Head)
             .use(modal, {
                 resolve: (name) =>
                     resolvePageComponent(

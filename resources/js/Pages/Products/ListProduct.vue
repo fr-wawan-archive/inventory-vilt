@@ -7,14 +7,14 @@
     </div>
     <div class="m-7 mt-8">
         <Link
-            href="/suppliers/create"
+            href="/products/create"
             class="p-3 bg-[#4C566A] hover:bg-[#81A1C1] text-white rounded-md"
             ><i class="fa fa-sharp fa-solid fa-plus"></i> New Supplier
         </Link>
     </div>
     <div class="flex justify-center">
         <div class="bg-white w-full shadow-lg mx-7 mb-10">
-            <Search title="list Suppliers">
+            <Search title="List Suppliers">
                 <input
                     type="text"
                     placeholder="Search.."
@@ -22,34 +22,55 @@
                     v-model="search"
                 />
             </Search>
-            <Table class="mt-3" :headers="['Name', 'Address', 'Phone']">
-                <tr v-for="supplier in suppliers.data" class="border-b">
+            <Table
+                class="mt-3"
+                :headers="['image', 'name', 'supplier', 'category', 'unit']"
+            >
+                <tr v-for="product in products.data" class="border-b">
                     <td class="whitespace px-6 py-4">
-                        {{ supplier.name }}
+                        <div
+                            v-if="
+                                product.image !==
+                                'http://127.0.0.1:8000/storage'
+                            "
+                        >
+                            <img
+                                :src="product.image"
+                                class="w-14 mx-auto"
+                                alt=""
+                            />
+                        </div>
+                        <div v-else>No image</div>
                     </td>
                     <td class="whitespace px-6 py-4">
-                        {{ supplier.address }}
+                        {{ product.name }}
                     </td>
                     <td class="whitespace px-6 py-4">
-                        {{ supplier.phone }}
+                        {{ product.supplier_id.name }}
+                    </td>
+                    <td class="whitespace px-6 py-4">
+                        {{ product.category_id.name }}
+                    </td>
+                    <td class="whitespace px-6 py-4">
+                        {{ product.unit }}
                     </td>
                     <td class="flex gap-3 justify-center items-center mt-2">
                         <Link
-                            :href="`/suppliers/${supplier.id}/edit`"
+                            :href="`/products/${product.id}/edit`"
                             class="inline-block rounded-sm text-white font-medium text-sm p-2 px-5 bg-[#5E81AC] hover:bg-[#81A1C1]"
                             >Edit</Link
                         >
                         <DeleteModal
                             name="Delete"
                             title="Delete"
-                            :href="`/suppliers/${supplier.id}`"
+                            :href="`/products/${product.id}`"
                         >
                         </DeleteModal>
                     </td>
                 </tr>
             </Table>
             <div class="p-4">
-                <Pagination :links="suppliers.links" />
+                <Pagination :links="products.links" />
             </div>
         </div>
     </div>
@@ -65,7 +86,7 @@ import Notification from "../../Shared/Notification.vue";
 import DeleteModal from "../../Shared/DeleteModal.vue";
 
 const props = defineProps({
-    suppliers: Object,
+    products: Object,
     filters: Object,
 });
 
@@ -75,7 +96,7 @@ watch(
     search,
     _.debounce((value) => {
         router.get(
-            "/suppliers",
+            "/products",
             { search: value },
             {
                 preserveState: true,

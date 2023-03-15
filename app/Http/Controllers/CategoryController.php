@@ -6,7 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Request as RequestFacade;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -40,7 +40,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return Inertia::modal('Categories/CreateCategory')->baseRoute('categories/index');
     }
 
     /**
@@ -49,24 +48,21 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
-        
-        $validation = Validator::make($request->all(),[
+
+        $validateData = $request->validate([
             "name" => "required | max:255",
-            "image" => "file | max:1024"
+            "image" => "required | image | max:1024",
         ]);
 
-        $categories = new Category();
-        $categories->name = $request->input('name');
+         $validateData["image"] = $request->file("image")->store("category_images", "public");
 
-        if ($request->file("image")) {
-            $file = $request->file("image")->store("category_images", "public");
-            $categories->image = $file;
-        }
+        Category::create($validateData);
 
-        $categories->save();
-        
+        return redirect("/categories/")->with(
+            "message",
+            "Categories Successfully added"
+        );
 
-        return redirect('/categories/')->with('message','Categories Successfully added');
     }
 
     /**
@@ -82,7 +78,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return Inertia::modal('Categories/EditCategory',[
+            "category" => $category
+        ])->baseRoute('categories.index');
     }
 
     /**
@@ -90,7 +88,26 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+
+
+        $rules = [
+            "name" => "required | max:255",
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->file("image")) {
+            if ($category->image) {
+                Storage::delete('public/' . $category->image);
+            }
+            $validatedData["image"] = $request->file("image")->store("category_images", "public");
+        }
+        
+        Category::where("id", $category->id)->update($validatedData);
+
+        return redirect()
+            ->route("categories.index")
+            ->with("message", "Category succesfully updated");
     }
 
     /**
@@ -98,6 +115,14 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        if ($category->image) {
+            Storage::delete("public/" . $category->image);
+        }
+
+        Category::destroy($category->id);
+
+        return redirect()
+            ->route("categories.index")
+            ->with("message", "Category successfully deleted");
     }
 }

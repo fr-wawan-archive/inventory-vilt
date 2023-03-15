@@ -1,8 +1,8 @@
 <template>
-    <div class="flex flex-col overflow-hidden">
+    <div class="flex flex-col overflow-clip">
         <div class="flex flex-1">
             <div
-                class="bg-[#3B4252] w-64 h-screen z-1 p-4 gap-4 flex flex-col shadow-md sticky left-0 top-0 min-h-[100vh]"
+                class="bg-[#3B4252] w-64 h-screen z-1 p-4 gap-4 flex flex-col shadow-md sticky top-0 left-0 min-h-[100vh]"
             >
                 <div
                     class="w-full h-12 text-white"
@@ -119,9 +119,7 @@
                         </li>
 
                         <li class="text-gray-400 hover:text-white">
-                            <a
-                                class="flex gap-3"
-                                href="{{ route('products.index') }}"
+                            <a class="flex gap-3" href="/products/"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     class="icon icon-tabler icon-tabler-shopping-cart"
@@ -154,8 +152,8 @@
                 </div>
             </div>
             <div class="w-full">
-                <nav class="bg-white p-5 h-15 shadow-sm">
-                    <div class="flex justify-end container mt-1 mx-auto">
+                <nav class="bg-white p-5 shadow-sm">
+                    <div class="flex justify-end mt-1">
                         <ul class="flex text-lg gap-5">
                             <li><a href="" class="text-">Home</a></li>
                             <li><a href="">About</a></li>
