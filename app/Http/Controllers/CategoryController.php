@@ -22,16 +22,12 @@ class CategoryController extends Controller
         ->select('id', 'name','image')
         ->paginate(10)->withQueryString();
 
-        
-            $categories->getCollection()->transform(function ($category) {
-                return [
-                    'id' => $category->id,
-                    'name' => $category->name,
-                    'image' => asset('storage/' . $category->image),
-                ];
-            });
+        $categories->map(function ($category) {
+            $category->image_url = asset('storage/' . $category->image);
+            return $category;
+        });
 
-            $categories = $categories->toArray();
+
         return Inertia::render('Categories/ListCategory',['categories' => $categories, 'filters' => RequestFacade::only(['search'])]);
     }
 

@@ -31,7 +31,7 @@ function close() {
 
         <form
             class="mt-6"
-            @submit.prevent="form.post(/suppliers/)"
+            @submit.prevent="form.post('/suppliers')"
             @inertia.success="close()"
         >
             <Input name="name" placeholder="Supplier Name" v-model="form.name">

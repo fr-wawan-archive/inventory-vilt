@@ -9,7 +9,7 @@
         <Link
             href="/products/create"
             class="p-3 bg-[#4C566A] hover:bg-[#81A1C1] text-white rounded-md"
-            ><i class="fa fa-sharp fa-solid fa-plus"></i> New Supplier
+            ><i class="fa fa-sharp fa-solid fa-plus"></i> New Product
         </Link>
     </div>
     <div class="flex justify-center">
@@ -30,26 +30,27 @@
                     <td class="whitespace px-6 py-4">
                         <div
                             v-if="
-                                product.image !==
+                                product.image_url !==
                                 'http://127.0.0.1:8000/storage'
                             "
                         >
                             <img
-                                :src="product.image"
+                                :src="product.image_url"
                                 class="w-14 mx-auto"
                                 alt=""
                             />
                         </div>
                         <div v-else>No image</div>
                     </td>
+
                     <td class="whitespace px-6 py-4">
                         {{ product.name }}
                     </td>
                     <td class="whitespace px-6 py-4">
-                        {{ product.supplier_id.name }}
+                        {{ product.supplier_name }}
                     </td>
                     <td class="whitespace px-6 py-4">
-                        {{ product.category_id.name }}
+                        {{ product.category_name }}
                     </td>
                     <td class="whitespace px-6 py-4">
                         {{ product.unit }}

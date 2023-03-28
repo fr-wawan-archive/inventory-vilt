@@ -18,9 +18,6 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    // return Inertia::render('Suppliers/ListSupplier',[
-    //     "name" => 'tes'
-    // ]);
 });
 
 Route::resource('suppliers',SupplierController::class);

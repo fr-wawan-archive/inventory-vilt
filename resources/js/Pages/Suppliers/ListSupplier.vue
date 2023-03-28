@@ -47,10 +47,11 @@
                         </DeleteModal>
                     </td>
                 </tr>
+                <template v-slot:pagination>
+                    <div class="mt-5 flex justify-center">
+                        <Pagination :links="suppliers.links" /></div
+                ></template>
             </Table>
-            <div class="p-4">
-                <Pagination :links="suppliers.links" />
-            </div>
         </div>
     </div>
 </template>

@@ -29,7 +29,7 @@
                             "
                         >
                             <img
-                                :src="category.image"
+                                :src="category.image_url"
                                 class="w-14 mx-auto"
                                 alt=""
                             />
