@@ -14,7 +14,7 @@
                 >
                     <div
                         v-if="isMobile"
-                        class="flex justify-end text-2xl mb-3 mr-3"
+                        class="flex justify-end text-2xl mb-7 mr-3"
                     >
                         <button @click="isShow = false">
                             <i class="fa-solid fa-xmark"></i>

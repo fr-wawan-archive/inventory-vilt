@@ -4,7 +4,7 @@
             v-for="link in links"
             :href="link.url"
             v-html="link.label"
-            class="block rounded pt-4 md:py-3 px-5 transition-all duration-300 hover:bg-neutral-100 text-sm"
+            class="block rounded md:px-4 md:py-3 p-3 transition-all duration-300 hover:bg-neutral-100 text-sm"
             :class="{
                 'bg-slate-300 hover:bg-neutral-200': link.active,
             }"

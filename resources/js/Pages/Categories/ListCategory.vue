@@ -5,9 +5,15 @@
     <div v-if="$page.props.flash.message" class="m-auto">
         <Notification />
     </div>
-
+    <div class="m-7 mt-8">
+        <Link
+            href="/suppliers/create"
+            class="p-3 bg-[#4C566A] hover:bg-[#81A1C1] text-white rounded-md"
+            ><i class="fa fa-sharp fa-solid fa-plus"></i> New Category
+        </Link>
+    </div>
     <div class="flex justify-center">
-        <div class="bg-white w-9/12 shadow-lg ml-7 my-10">
+        <div class="bg-white w-full shadow-lg mx-7">
             <Search title="List Category">
                 <input
                     type="text"
@@ -54,48 +60,6 @@
             <div class="p-4">
                 <Pagination :links="categories.links" />
             </div>
-        </div>
-
-        <div
-            class="bg-white pt-3 w-3/12 mr-5 ml-7 my-10 shadow-lg"
-            style="height: 340px"
-        >
-            <form
-                @submit.prevent="form.post('/categories')"
-                class="w-11/12 mx-auto"
-                enctype="multipart/form-data"
-            >
-                <div class="border-b mb-5">
-                    <h1 class="text-lg font-bold my-2">Create Suppliers</h1>
-                </div>
-                <Input
-                    name="name"
-                    placeholder="Categories name"
-                    v-model="form.name"
-                >
-                    Supplier Name
-                </Input>
-                <div class="text-red-500" v-if="$page.props.errors.name">
-                    {{ $page.props.errors.name }}
-                </div>
-                <div class="my-1">
-                    <label for="image">Category Images</label>
-                    <input
-                        type="file"
-                        name="image"
-                        id="image"
-                        class="p-2 w-full placeholder:text-gray-500 mt-2 bg-white border border-slate-400"
-                        @input="form.image = $event.target.files[0]"
-                    />
-                </div>
-                <div class="text-red-500" v-if="$page.props.errors.image">
-                    {{ $page.props.errors.image }}
-                </div>
-
-                <div class="mt-5">
-                    <Submit />
-                </div>
-            </form>
         </div>
     </div>
 </template>

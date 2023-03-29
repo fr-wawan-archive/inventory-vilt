@@ -36,6 +36,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        return Inertia::modal('Categories/CreateCategory')->baseRoute('categories.index');
     }
 
     /**

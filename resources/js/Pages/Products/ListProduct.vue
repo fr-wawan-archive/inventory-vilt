@@ -14,7 +14,7 @@
     </div>
     <div class="flex justify-center">
         <div class="bg-white w-full shadow-lg mx-7 mb-10">
-            <Search title="List Suppliers">
+            <Search title="List Products">
                 <input
                     type="text"
                     placeholder="Search.."

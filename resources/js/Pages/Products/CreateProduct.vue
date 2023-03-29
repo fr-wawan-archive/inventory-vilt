@@ -23,7 +23,7 @@ const form = useForm({
         <title>Create Product</title>
     </Head>
 
-    <div class="bg-white w-full container p-5 mx-auto my-10 shadow-lg">
+    <div class="bg-white p-5 mx-7 my-10 shadow-lg">
         <form
             class="mt-6"
             @submit.prevent="form.post('/products')"
@@ -44,48 +44,72 @@ const form = useForm({
                         class="p-2 w-full placeholder:text-gray-500 mt-2 bg-white border border-slate-400"
                         @input="form.image = $event.target.files[0]"
                     />
-                </div>
 
-                <div class="text-red-500" v-if="$page.props.errors.image">
-                    {{ $page.props.errors.image }}
+                    <div class="text-red-500" v-if="$page.props.errors.image">
+                        {{ $page.props.errors.image }}
+                    </div>
                 </div>
-                <Input
-                    name="unit"
-                    placeholder="Product Unit"
-                    v-model="form.unit"
-                    >Product Unit
-                </Input>
-                <div class="text-red-500" v-if="$page.props.errors.unit">
-                    {{ $page.props.errors.unit }}
+                <div class="w-full">
+                    <Input
+                        name="unit"
+                        placeholder="Product Unit"
+                        v-model="form.unit"
+                        >Product Unit
+                    </Input>
+                    <div class="text-red-500" v-if="$page.props.errors.unit">
+                        {{ $page.props.errors.unit }}
+                    </div>
                 </div>
             </div>
             <div class="my3 flex justify-between gap-10">
-                <select
-                    name="category_id"
-                    id="category_id"
-                    class="w-full bg-white border border-slate-400 p-2 mt-2"
-                    v-model="form.category_id"
-                >
-                    <option value="" disabled selected>
-                        Please Choose Category
-                    </option>
-                    <option v-for="category in categories" :value="category.id">
-                        {{ category.name }}
-                    </option>
-                </select>
-                <select
-                    name="supplier_id"
-                    id="supplier_id"
-                    class="w-full bg-white border border-slate-400 p-2 mt-2"
-                    v-model="form.supplier_id"
-                >
-                    <option value="" disabled selected>
-                        Please Choose Supplier
-                    </option>
-                    <option v-for="supplier in suppliers" :value="supplier.id">
-                        {{ supplier.name }}
-                    </option>
-                </select>
+                <div class="w-full">
+                    <select
+                        name="category_id"
+                        id="category_id"
+                        class="w-full bg-white border border-slate-400 p-2 mt-2"
+                        v-model="form.category_id"
+                    >
+                        <option value="" disabled selected>
+                            Please Choose Category
+                        </option>
+                        <option
+                            v-for="category in categories"
+                            :value="category.id"
+                        >
+                            {{ category.name }}
+                        </option>
+                    </select>
+                    <div
+                        class="text-red-500"
+                        v-if="$page.props.errors.category_id"
+                    >
+                        {{ $page.props.errors.category_id }}
+                    </div>
+                </div>
+                <div class="w-full">
+                    <select
+                        name="supplier_id"
+                        id="supplier_id"
+                        class="w-full bg-white border border-slate-400 p-2 mt-2"
+                        v-model="form.supplier_id"
+                    >
+                        <option value="" disabled selected>
+                            Please Choose Supplier
+                        </option>
+                        <option
+                            v-for="supplier in suppliers"
+                            :value="supplier.id"
+                        >
+                            {{ supplier.name }}
+                        </option>
+                    </select>
+                    <div
+                        class="text-red-500"
+                        v-if="$page.props.errors.supplier_id"
+                    >
+                        {{ $page.props.errors.supplier_id }}
+                    </div>
+                </div>
             </div>
             <div class="my-5">
                 <textarea
@@ -97,6 +121,10 @@ const form = useForm({
                     class="border w-full p-3 border-slate-500 placeholder:text-gray-500"
                     v-model="form.description"
                 ></textarea>
+
+                <div class="text-red-500" v-if="$page.props.errors.description">
+                    {{ $page.props.errors.description }}
+                </div>
             </div>
 
             <div class="my-5">
