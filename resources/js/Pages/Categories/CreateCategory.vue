@@ -29,7 +29,7 @@ function close() {
 
         <form
             class="mt-6"
-            @submit.prevent="form.post('/category')"
+            @submit.prevent="form.post('/categories')"
             @inertia.success="close()"
             enctype="multipart/form-data"
         >

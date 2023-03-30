@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
@@ -17,9 +18,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render("Dashboard/Dashboard");
-});
+Route::get('/', [DashboardController::class,'index'])->name('dashboard.index');
 
 Route::resource('suppliers',SupplierController::class);
 Route::resource('categories',CategoryController::class);

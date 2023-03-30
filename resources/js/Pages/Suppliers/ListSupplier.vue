@@ -8,6 +8,7 @@
     <div class="m-7 mt-8">
         <Link
             href="/suppliers/create"
+            preserve-state
             class="p-3 bg-[#4C566A] hover:bg-[#81A1C1] text-white rounded-md"
             ><i class="fa fa-sharp fa-solid fa-plus"></i> New Supplier
         </Link>
@@ -36,6 +37,7 @@
                     <td class="flex gap-3 justify-center items-center mt-2">
                         <Link
                             :href="`/suppliers/${supplier.id}/edit`"
+                            preserve-scroll
                             class="inline-block rounded-sm text-white font-medium text-sm p-2 px-5 bg-[#5E81AC] hover:bg-[#81A1C1]"
                             >Edit</Link
                         >

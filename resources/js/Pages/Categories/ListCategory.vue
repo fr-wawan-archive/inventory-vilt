@@ -7,7 +7,7 @@
     </div>
     <div class="m-7 mt-8">
         <Link
-            href="/suppliers/create"
+            href="/categories/create"
             class="p-3 bg-[#4C566A] hover:bg-[#81A1C1] text-white rounded-md"
             ><i class="fa fa-sharp fa-solid fa-plus"></i> New Category
         </Link>
