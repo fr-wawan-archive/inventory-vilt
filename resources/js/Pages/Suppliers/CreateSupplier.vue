@@ -26,7 +26,7 @@ function close() {
 </script>
 
 <template>
-    <Modal title="Edit Suppliers" ref="modalRef">
+    <Modal title="Create Suppliers" ref="modalRef">
         <template #title> Create Supplier </template>
 
         <form
