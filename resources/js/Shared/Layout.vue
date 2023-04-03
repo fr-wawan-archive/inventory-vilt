@@ -58,7 +58,7 @@
                                 <path d="M13.41 10.59l2.59 -2.59"></path>
                                 <path d="M7 12a5 5 0 0 1 5 -5"></path>
                             </svg>
-                            Dashboard
+                            <Link href="/dashboard">Dashboard</Link>
                         </li>
                     </ul>
                     <ul class="mb-16">
@@ -164,27 +164,18 @@
                     </ul>
                 </div>
             </div>
-            <div class="w-full">
-                <nav class="bg-white p-5 shadow-sm">
-                    <div class="flex justify-between mt-1">
-                        <button @click="changeShow">
-                            <div class="text-2xl">
-                                <i class="fa-solid fa-bars"></i>
-                            </div>
-                        </button>
-                        <ul class="flex text-lg gap-5">
-                            <li><a href="" class="text-">Home</a></li>
-                            <li><a href="">About</a></li>
-                            <li><a href="">Contact</a></li>
-                        </ul>
-                    </div>
-                </nav>
-                <div class="">
-                    <slot />
+            <Navbar>
+                <template v-slot:btn>
+                    <button @click="changeShow">
+                        <div class="text-2xl">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                    </button>
+                </template>
+                <slot />
 
-                    <Modal />
-                </div>
-            </div>
+                <Modal />
+            </Navbar>
         </div>
     </div>
 </template>
@@ -193,6 +184,7 @@
 import { Modal } from "momentum-modal";
 import { Link } from "@inertiajs/vue3";
 import { ref } from "vue";
+import Navbar from "./Navbar.vue";
 
 let isShow = ref(false);
 

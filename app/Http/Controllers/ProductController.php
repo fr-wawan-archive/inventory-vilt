@@ -57,7 +57,7 @@ class ProductController extends Controller
                 'name' => $supplier->name
             ];
         });
-        
+
         return Inertia::render('Products/CreateProduct',[
             'categories' => $categories,
             'suppliers' => $suppliers
@@ -105,7 +105,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        
+
         $categories = Category::all()->map(function($category){
             return [
                 'id' => $category->id,
@@ -152,7 +152,7 @@ class ProductController extends Controller
             }
             $validatedData["image"] = $request->file("image")->store("product_images", "public");
         }
-        
+
         Product::where("id", $product->id)->update($validatedData);
 
         return redirect()

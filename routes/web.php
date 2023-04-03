@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SupplierController;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +20,15 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [DashboardController::class,'index'])->name('dashboard.index');
+Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard.index')->middleware('auth');
 
-Route::resource('suppliers',SupplierController::class);
-Route::resource('categories',CategoryController::class);
-Route::resource('products',ProductController::class);
+
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
+Route::get('/', [LoginController::class, 'index'])->middleware('guest');
+Route::post('/', [LoginController::class, 'store'])->middleware('guest');
+Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::resource('suppliers',SupplierController::class)->middleware('auth');
+Route::resource('categories',CategoryController::class)->middleware('auth');
+Route::resource('products',ProductController::class)->middleware('auth');

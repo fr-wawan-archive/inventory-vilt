@@ -12,9 +12,6 @@ const form = useForm({
     name: props.supplier.name,
     address: props.supplier.address,
     phone: props.supplier.phone,
-    onSuccess: () => {
-        close();
-    },
 });
 
 const modalRef = ref();
@@ -32,7 +29,6 @@ function close() {
         <form
             class="mt-6"
             @submit.prevent="form.put(`/suppliers/${supplier.id}`)"
-            @inertia.success="close()"
         >
             <Input name="name" placeholder="Supplier Name" v-model="form.name">
                 Supplier Name

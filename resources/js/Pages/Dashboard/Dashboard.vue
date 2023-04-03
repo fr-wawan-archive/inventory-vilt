@@ -26,7 +26,7 @@
                 </svg>
             </div>
             <div>
-                <Link href="Categories/">Category</Link>
+                <Link href="categories/">Category</Link>
                 <p class="text-sm text-gray-500">{{ categories }}</p>
             </div>
         </div>

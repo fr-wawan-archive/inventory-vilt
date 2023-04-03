@@ -51,8 +51,9 @@
                 </tr>
                 <template v-slot:pagination>
                     <div class="mt-5 flex justify-center">
-                        <Pagination :links="suppliers.links" /></div
-                ></template>
+                        <Pagination :links="suppliers.links" />
+                    </div>
+                </template>
             </Table>
         </div>
     </div>
