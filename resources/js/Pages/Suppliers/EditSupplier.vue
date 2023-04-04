@@ -24,8 +24,6 @@ function close() {
 
 <template>
     <Modal title="Edit Suppliers" ref="modalRef">
-        <template #title> Edit Supplier </template>
-
         <form
             class="mt-6"
             @submit.prevent="form.put(`/suppliers/${supplier.id}`)"

@@ -61,7 +61,7 @@
                             <Link href="/dashboard">Dashboard</Link>
                         </li>
                     </ul>
-                    <ul class="mb-16">
+                    <ul class="mt-5">
                         <span class="text-gray-500 uppercase font-bold text-xs"
                             >Admin</span
                         >
@@ -159,6 +159,40 @@
                                     <path d="M6 5l14 1l-1 7h-13"></path>
                                 </svg>
                                 Product</Link
+                            >
+                        </li>
+                    </ul>
+                    <ul class="mt-5">
+                        <span class="text-gray-500 uppercase font-bold text-xs"
+                            >Management Stock</span
+                        >
+
+                        <li class="text-gray-400 hover:text-white my-5">
+                            <Link class="flex gap-3" href="/stock/"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="icon icon-tabler icon-tabler-database"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="2"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path
+                                        stroke="none"
+                                        d="M0 0h24v24H0z"
+                                        fill="none"
+                                    ></path>
+                                    <path
+                                        d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0"
+                                    ></path>
+                                    <path d="M4 6v6a8 3 0 0 0 16 0v-6"></path>
+                                    <path d="M4 12v6a8 3 0 0 0 16 0v-6"></path>
+                                </svg>
+                                Stock</Link
                             >
                         </li>
                     </ul>

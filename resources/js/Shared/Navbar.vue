@@ -7,15 +7,14 @@
                     <h1></h1>
                 </div>
                 <ul
-                    class="flex text-lg gap-5"
+                    class="flex text-lg gap-5 justify-between"
                     v-if="$page.props.auth.user"
-                    :class="justify"
                 >
                     <Link href="/logout" method="post">Logout</Link>
                 </ul>
                 <ul v-else class="flex gap-5">
-                    <Link href="/" method="post">Login</Link>
-                    <Link href="/register" method="post">Register</Link>
+                    <Link href="/login">Login</Link>
+                    <Link href="/register">Register</Link>
                 </ul>
             </div>
         </nav>
@@ -25,11 +24,4 @@
     </div>
 </template>
 
-<script setup>
-defineProps({
-    justify: {
-        type: String,
-        default: "justify-between",
-    },
-});
-</script>
+<script setup></script>

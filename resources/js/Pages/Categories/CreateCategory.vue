@@ -24,9 +24,7 @@ function close() {
 </script>
 
 <template>
-    <Modal title="Edit Suppliers" ref="modalRef">
-        <template #title> Create Supplier </template>
-
+    <Modal title="Create Category" ref="modalRef">
         <form
             class="mt-6"
             @submit.prevent="form.post('/categories')"

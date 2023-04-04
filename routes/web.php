@@ -8,6 +8,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\StockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,14 +21,23 @@ use App\Http\Controllers\LoginController;
 |
 */
 
+
+Route::get('/',function () {
+    return Inertia::render('Public/Index');
+});
 Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard.index')->middleware('auth');
 
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
-Route::get('/', [LoginController::class, 'index'])->middleware('guest');
-Route::post('/', [LoginController::class, 'store'])->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
+Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
+Route::get('/stock/{id}/add', [StockController::class, 'create']);
+Route::put('/stock/{id}/update',[StockController::class,'update']);
+
 
 Route::resource('suppliers',SupplierController::class)->middleware('auth');
 Route::resource('categories',CategoryController::class)->middleware('auth');

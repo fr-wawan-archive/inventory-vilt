@@ -4,7 +4,7 @@
             <h2 class="text-2xl font-bold">Login User</h2>
             <p class="border-b my-3"></p>
         </div>
-        <form @submit.prevent="form.post('/')">
+        <form @submit.prevent="form.post('/login')">
             <Input
                 name="email"
                 type="email"

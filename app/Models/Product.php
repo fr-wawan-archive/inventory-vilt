@@ -15,7 +15,7 @@ class Product extends Model
     protected $guarded = ['id'];    
 
     public function supplier()
-    {
+    {   
         return $this->belongsTo(Supplier::class);   
     }
     public function category()
