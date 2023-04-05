@@ -29,7 +29,6 @@ class ProductController extends Controller
             $product->image_url = asset('storage/' . $product->image);
             $product->category_name = $product->category->name;
             $product->supplier_name = $product->supplier->name;
-            return $product;
         });
 
         return Inertia::render('Products/ListProduct',[
@@ -57,7 +56,7 @@ class ProductController extends Controller
                 'name' => $supplier->name
             ];
         });
-        
+
         return Inertia::render('Products/CreateProduct',[
             'categories' => $categories,
             'suppliers' => $suppliers
@@ -105,7 +104,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        
+
         $categories = Category::all()->map(function($category){
             return [
                 'id' => $category->id,
@@ -152,7 +151,7 @@ class ProductController extends Controller
             }
             $validatedData["image"] = $request->file("image")->store("product_images", "public");
         }
-        
+
         Product::where("id", $product->id)->update($validatedData);
 
         return redirect()

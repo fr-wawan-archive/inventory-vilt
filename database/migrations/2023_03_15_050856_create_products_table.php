@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('unit');
             $table->text('description');
+            $table->integer('stock')->default(0);
             $table->timestamps();
         });
     }

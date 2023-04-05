@@ -1,5 +1,5 @@
 <template>
-    <div class="my-1 w-full">
+    <div class="my-2 w-full">
         <label :for="name"><slot /></label>
         <input
             :type="type"

@@ -59,9 +59,10 @@
                                 <path d="M7 12a5 5 0 0 1 5 -5"></path>
                             </svg>
                             <Link href="/">Dashboard</Link>
+                            <Link href="/dashboard">Dashboard</Link>
                         </li>
                     </ul>
-                    <ul class="mb-16">
+                    <ul class="mt-5">
                         <span class="text-gray-500 uppercase font-bold text-xs"
                             >Admin</span
                         >
@@ -162,29 +163,54 @@
                             >
                         </li>
                     </ul>
-                </div>
-            </div>
-            <div class="w-full">
-                <nav class="bg-white p-5 shadow-sm">
-                    <div class="flex justify-between mt-1">
-                        <button @click="changeShow">
-                            <div class="text-2xl">
-                                <i class="fa-solid fa-bars"></i>
-                            </div>
-                        </button>
-                        <ul class="flex text-lg gap-5">
-                            <li><a href="" class="text-">Home</a></li>
-                            <li><a href="">About</a></li>
-                            <li><a href="">Contact</a></li>
-                        </ul>
-                    </div>
-                </nav>
-                <div class="">
-                    <slot />
+                    <ul class="mt-5">
+                        <span class="text-gray-500 uppercase font-bold text-xs"
+                            >Management Stock</span
+                        >
 
-                    <Modal />
+                        <li class="text-gray-400 hover:text-white my-5">
+                            <Link class="flex gap-3" href="/stock/"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="icon icon-tabler icon-tabler-database"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="2"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path
+                                        stroke="none"
+                                        d="M0 0h24v24H0z"
+                                        fill="none"
+                                    ></path>
+                                    <path
+                                        d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0"
+                                    ></path>
+                                    <path d="M4 6v6a8 3 0 0 0 16 0v-6"></path>
+                                    <path d="M4 12v6a8 3 0 0 0 16 0v-6"></path>
+                                </svg>
+                                Stock</Link
+                            >
+                        </li>
+                    </ul>
                 </div>
             </div>
+            <Navbar>
+                <template v-slot:btn>
+                    <button @click="changeShow">
+                        <div class="text-2xl">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                    </button>
+                </template>
+                <slot />
+
+                <Modal />
+            </Navbar>
         </div>
     </div>
 </template>
@@ -193,6 +219,7 @@
 import { Modal } from "momentum-modal";
 import { Link } from "@inertiajs/vue3";
 import { ref } from "vue";
+import Navbar from "./Navbar.vue";
 
 let isShow = ref(false);
 
