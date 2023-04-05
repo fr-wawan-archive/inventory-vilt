@@ -58,7 +58,7 @@
                                 <path d="M13.41 10.59l2.59 -2.59"></path>
                                 <path d="M7 12a5 5 0 0 1 5 -5"></path>
                             </svg>
-                            Dashboard
+                            <Link href="/">Dashboard</Link>
                         </li>
                     </ul>
                     <ul class="mb-16">
