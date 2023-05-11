@@ -2,13 +2,14 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,15 +23,18 @@ use App\Http\Controllers\StockController;
 */
 
 
-Route::get('/',function () {
-    return Inertia::render('Public/Index');
-});
+// Route::get('/',function () {
+//     return Inertia::render('Public/Index',[
+//         'products' => Product::all()
+//     ]);
+// });
+Route::get('/', [IndexController::class, 'index'])->name('index.index');
 Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard.index')->middleware('auth');
 
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
-Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout']);
 

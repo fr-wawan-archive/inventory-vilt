@@ -58,7 +58,6 @@
                                 <path d="M13.41 10.59l2.59 -2.59"></path>
                                 <path d="M7 12a5 5 0 0 1 5 -5"></path>
                             </svg>
-                            <Link href="/">Dashboard</Link>
                             <Link href="/dashboard">Dashboard</Link>
                         </li>
                     </ul>
@@ -234,7 +233,6 @@ function checkScreenSize() {
     isMobile.value = width <= 767;
 }
 
-// Call checkScreenSize on component mount and window resize
 window.addEventListener("load", checkScreenSize);
 window.addEventListener("resize", checkScreenSize);
 </script>

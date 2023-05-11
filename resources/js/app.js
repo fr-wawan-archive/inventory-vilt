@@ -11,7 +11,7 @@ createInertiaApp({
         // return pages[`./Pages/${name}.vue`];
         let page = pages[`./Pages/${name}.vue`];
 
-        page.default.layout = page.default.layout || Layout;
+        page.default.layout = name.startsWith("Public/") ? undefined : Layout;
         return page;
     },
     setup({ el, App, props, plugin }) {

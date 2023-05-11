@@ -4,8 +4,8 @@
     </Head>
 
     <div class="grid grid-cols-5 gap-5 px-8 mt-10">
-        <div class="bg-white p-5 rounded-lg flex gap-3">
-            <div class="bg-blue-400 p-3 flex items-center rounded-lg">
+        <Card bg-color="bg-blue-600">
+            <template v-slot:svg>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="icon icon-tabler icon-tabler-layout-grid-add"
@@ -24,14 +24,16 @@
                     <rect x="4" y="14" width="6" height="6" rx="1" />
                     <path d="M14 17h6m-3 -3v6" />
                 </svg>
-            </div>
-            <div>
-                <Link href="categories/">Category</Link>
-                <p class="text-sm text-gray-500">{{ categories }}</p>
-            </div>
-        </div>
-        <div class="bg-white p-5 rounded-lg flex gap-3">
-            <div class="bg-red-600 p-3 rounded-lg flex items-center">
+            </template>
+            <template v-slot:link>
+                <div>
+                    <Link href="categories/">Category</Link>
+                    <p class="text-sm text-gray-500">{{ categories }}</p>
+                </div>
+            </template>
+        </Card>
+        <Card bg-color="bg-red-600">
+            <template v-slot:svg>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="icon icon-tabler icon-tabler-truck"
@@ -51,12 +53,14 @@
                         d="M5 17h-2v-11a1 1 0 0 1 1 -1h9v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5"
                     />
                 </svg>
-            </div>
-            <div>
-                <Link href="suppliers/">Supplier</Link>
-                <p class="text-sm text-gray-500">{{ suppliers }}</p>
-            </div>
-        </div>
+            </template>
+            <template v-slot:link>
+                <div>
+                    <Link href="suppliers/">Supplier</Link>
+                    <p class="text-sm text-gray-500">{{ suppliers }}</p>
+                </div>
+            </template>
+        </Card>
         <div class="bg-white p-5 rounded-lg flex gap-3">
             <div class="bg-blue-600 p-3 rounded-lg flex items-center">
                 <svg
@@ -87,6 +91,7 @@
 </template>
 
 <script setup>
+import Card from "../../Shared/DashboardCard.vue";
 const props = defineProps({
     suppliers: Number,
     categories: Number,
